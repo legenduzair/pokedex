@@ -1,8 +1,9 @@
+import { Flex } from '@radix-ui/themes'
 import React from 'react'
 
 const Footer = () => {
   return (
-    <div>2024 Pokedex. All Rights reserved.</div>
+    <Flex justify="center">2024 Pokedex. All Rights reserved.</Flex>
   )
 }
 

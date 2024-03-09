@@ -6,7 +6,7 @@ import React from 'react'
 const SearchBar = () => {
   return (
     <>
-      <TextField.Root className='w-96'>
+      <TextField.Root className='sm:w-96'>
         <TextField.Input placeholder="Search for a Pokemon" />
       </TextField.Root>
       <Box>
