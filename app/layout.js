@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Pokedex",
-  description: "Next JS Pokedex App",
+  description: "Pokedex is an application where users can traverse through the list of Pokemon available, view information about them and also search for them.",
 };
 
 export default function RootLayout({ children }) {
