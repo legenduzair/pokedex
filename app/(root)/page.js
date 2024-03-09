@@ -1,7 +1,13 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <h1>Pokedex Application</h1>
+    <>
+      <Header />
+      <section>Pokedex List</section>
+      <Footer />
+    </>
   );
 }
