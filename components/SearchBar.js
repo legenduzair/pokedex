@@ -7,12 +7,13 @@ const SearchBar = () => {
   return (
     <>
       <TextField.Root className='sm:w-96'>
-        <TextField.Input placeholder="Search for a Pokemon" />
+        <TextField.Input type="text" placeholder="Search for a Pokemon" />
       </TextField.Root>
       <Box>
         <Image src="/assets/images/pokeball.png"
         width={50}
-        height={50} />
+        height={50}
+        alt="Pokeball Logo" />
       </Box>
     </>
   )
