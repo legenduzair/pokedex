@@ -1,5 +1,6 @@
 "use client"
 import axios from 'axios';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 const PokemonInfo = ({ pokemonNumber }) => {
@@ -20,15 +21,18 @@ const PokemonInfo = ({ pokemonNumber }) => {
 
   return (
     <>
-      <div>Abilities:</div>
-      <ul>
-        {pokemonInfo.abilities &&
-          pokemonInfo.abilities.map((ability, index) => (
-            <li key={index}>{ability.ability.name}</li>
-          ))}
-      </ul>
+      <div className='flex justify-center'>
+        {pokemonInfo.sprites && (
+          <Image
+            src={pokemonInfo.sprites.other['official-artwork'].front_default}
+            width={200}
+            height={200}
+            alt={`Front artwork of ${pokemonInfo.name}`}
+          />
+        )}
+      </div>
     </>
-  );
+  )
 };
 
 export default PokemonInfo;

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <Flex justify="center">2024 Pokedex. All Rights reserved.</Flex>
+    <Flex justify="center" className='mb-16'>2024 Pokedex. All Rights reserved.</Flex>
   )
 }
 
