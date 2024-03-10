@@ -8,7 +8,8 @@ const Header = () => {
     <Flex align="center" justify="center" className='gap-10 mt-6'>
       <Image src="/assets/images/PokéDex.png"
       width={150}
-      height={150} />
+      height={150}
+      className="hidden sm:block" />
       <SearchBar />
     </Flex>
   )
