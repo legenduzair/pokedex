@@ -24,7 +24,7 @@ const PokemonInfo = ({ pokemonNumber }) => {
       <div className='flex justify-center'>
         {pokemonInfo.sprites && (
           <Image
-            src={pokemonInfo.sprites.other['official-artwork'].front_default}
+            src={pokemonInfo.sprites.front_default}
             width={200}
             height={200}
             alt={`Front artwork of ${pokemonInfo.name}`}
