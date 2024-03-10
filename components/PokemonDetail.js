@@ -2,15 +2,19 @@
 import { Box, Card, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import "../app/globals.css";
+import Description from "./Description";
 
 const PokemonDetail = ({ params }) => {
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const pokemonId = params.id;
 
-  {/* Fetch pokemon details depending on index */}
-  
+  {
+    /* Fetch pokemon details depending on index */
+  }
+
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       try {
@@ -30,7 +34,9 @@ const PokemonDetail = ({ params }) => {
     return <div>Loading...</div>;
   }
 
-  {/* Util Functions */}
+  {
+    /* Util Functions */
+  }
 
   const joinTypesWithSlash = (types) => {
     return types.map((type) => type.type.name).join(" / ");
@@ -50,8 +56,11 @@ const PokemonDetail = ({ params }) => {
         size="3"
         className="my-32 mx-5 sm:mx-16 md:mx-32 w-[90%] sm:w-[70%] md:w-[50%] h-full"
       >
+        <Link href="/">
+          <small><span className="pr-2">&larr;</span> Back to the 151 Pokemon</small>
+        </Link>
         <Box
-          className="flex gap-2 sm:gap-5 md:gap-10 items-start"
+          className="flex gap-2 sm:gap-5 md:gap-10 items-start mt-10"
           width="100%"
           height="100%"
         >
@@ -61,9 +70,10 @@ const PokemonDetail = ({ params }) => {
             width={300}
             height={300}
           />
-          <div className="pt-10 capitalize">
+          <Box className="pt-10 capitalize">
             <p className="pb-3">{pokemonDetails.name}</p>
-            <p className="pb-6">{joinTypesWithSlash(pokemonDetails.types)}</p>
+            <p className="pb-3">{joinTypesWithSlash(pokemonDetails.types)}</p>
+            <Description pokemonDetails={pokemonDetails} />
             <div className="flex gap-20">
               <div>
                 <h1>Stats:</h1>
@@ -79,7 +89,7 @@ const PokemonDetail = ({ params }) => {
                 </ul>
               </div>
             </div>
-          </div>
+          </Box>
         </Box>
         <Box>
           <div className="pt-10 capitalize">

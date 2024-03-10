@@ -1,10 +1,15 @@
 "use client"
+import { Flex } from '@radix-ui/themes';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 const PokemonInfo = ({ pokemonNumber }) => {
   const [pokemonInfo, setPokemonInfo] = useState({});
+
+  {
+    /* Fetch pokemon image depending on index */
+  }
 
   useEffect(() => {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`;
@@ -21,7 +26,7 @@ const PokemonInfo = ({ pokemonNumber }) => {
 
   return (
     <>
-      <div className='flex justify-center'>
+      <Flex justify="center">
         {pokemonInfo.sprites && (
           <Image
             src={pokemonInfo.sprites.front_default}
@@ -30,7 +35,7 @@ const PokemonInfo = ({ pokemonNumber }) => {
             alt={`Front artwork of ${pokemonInfo.name}`}
           />
         )}
-      </div>
+      </Flex>
     </>
   )
 };

@@ -8,6 +8,10 @@ import PokemonInfo from "./PokemonInfo";
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState([]);
 
+  {
+    /* Fetch 151 pokemon list */
+  }
+
   const url = "https://pokeapi.co/api/v2/pokemon?limit=151";
 
   useEffect(() => {
