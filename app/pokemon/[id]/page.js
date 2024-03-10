@@ -1,9 +1,9 @@
 import PokemonDetail from '@/components/PokemonDetail'
 import React from 'react'
 
-const Pokemon = () => {
+const Pokemon = ({ params }) => {
   return (
-    <PokemonDetail />
+    <PokemonDetail params={params} />
   )
 }
 
