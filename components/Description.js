@@ -18,12 +18,15 @@ const Description = ({ pokemonDetails }) => {
         );
         setPokemonDescription(response.data);
       } catch (error) {
-        console.log("Error fetching Pokemon description:", error);
+        console.error("Error fetching Pokemon description:", error);
       }
     };
 
     fetchPokemonDescription();
   }, [pokemonDetails.species.url]);
+
+  if(!pokemonDescription) return <div>No description on the Pokemon can be found.</div>;
+  
   return (
     <Box className='pb-6'>
       {pokemonDescription && (

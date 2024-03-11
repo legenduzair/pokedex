@@ -8,6 +8,7 @@ import PokemonInfo from "./PokemonInfo";
 const PokemonList = ({ searchTerm }) => {
   const [pokemonData, setPokemonData] = useState(null);
   const [searchedPokemonData, setSearchedPokemonData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -18,6 +19,7 @@ const PokemonList = ({ searchTerm }) => {
         setSearchedPokemonData(responseSearch.data);
         setPokemonData(null);
       } else {
+        setLoading(true);
         const limit = 10;
         const offset = pokemonData ? pokemonData.length : 0;
         const remainingPokemonCount = 151 - (pokemonData ? pokemonData.length : 0);
@@ -36,10 +38,12 @@ const PokemonList = ({ searchTerm }) => {
         setSearchedPokemonData(null);
       }
     } catch (error) {
-      alert("No pokemon found. Please try again.");
+      alert("No pokemon found. Please try again."); // Show alert when no Pokemon is found
+      console.error("No pokemon found. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
-  
   
   useEffect(() => {
     fetchData();
@@ -50,6 +54,7 @@ const PokemonList = ({ searchTerm }) => {
       dataLength={pokemonData && pokemonData.length}
       next={fetchData}
       hasMore={true}>
+      {loading && <h4>Currently loading the original 151 Pokemon...</h4>}
       <Flex>
         <Grid
           columns={{

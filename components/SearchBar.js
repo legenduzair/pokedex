@@ -12,7 +12,11 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const handleSearchButtonClick = () => {
-    onSearch(searchInput);
+    if (searchInput.trim() !== '') {
+      onSearch(searchInput.trim());
+    } else {
+      alert('Please enter a valid search term.');
+    }
   };
 
   return (

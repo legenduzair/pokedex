@@ -9,6 +9,8 @@ import Description from "./Description";
 
 const PokemonDetail = ({ params }) => {
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
   const pokemonId = params.id;
 
   {
@@ -16,6 +18,7 @@ const PokemonDetail = ({ params }) => {
   }
 
   useEffect(() => {
+    setLoading(true);
     const fetchPokemonDetails = async () => {
       try {
         const response = await axios.get(
@@ -23,16 +26,18 @@ const PokemonDetail = ({ params }) => {
         );
         setPokemonDetails(response.data);
       } catch (error) {
-        console.log("Error fetching Pokemon details:", error);
+        console.error("Error fetching Pokemon details:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPokemonDetails();
   }, [pokemonId]);
 
-  if (!pokemonDetails) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Searching for Pokemon details in the database...</div>;
+
+  if (!pokemonDetails) return <div>This pokemon does not exist in the database.</div>;
 
   {
     /* Util Functions */
@@ -42,12 +47,20 @@ const PokemonDetail = ({ params }) => {
     return types.map((type) => type.type.name).join(" / ");
   };
 
-  const removeHyphen = (moves) => {
+  const removeHyphenFromMoves = (moves) => {
     return moves.map((move) => move.move.name.replace("-", " "));
   };
 
   const formatMoveList = (moves) => {
-    return removeHyphen(moves).join(", ");
+    return removeHyphenFromMoves(moves).join(", ");
+  };
+
+  const removeHyphenFromAbilities = (abilities) => {
+    return abilities.map((ability) => ability.ability.name.replace("-", " "));
+  };
+
+  const formatAbilityList = (moves) => {
+    return removeHyphenFromAbilities(moves).join(", ");
   };
 
   return (
@@ -96,8 +109,8 @@ const PokemonDetail = ({ params }) => {
                 <Tabs.Content value="abilities">
                   <div>
                     <ul>
-                      {pokemonDetails.abilities.map((ability, index) => (
-                        <li className="pb-1" key={index}>{ability.ability.name}</li>
+                      {formatAbilityList(pokemonDetails.abilities).split(', ').map((ability, index) => (
+                        <li className="pb-1" key={index}>{ability}</li>
                       ))}
                     </ul>
                   </div>
