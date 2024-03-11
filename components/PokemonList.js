@@ -1,3 +1,4 @@
+"use client"
 import { Box, Card, Flex, Grid, Inset, Text } from "@radix-ui/themes";
 import axios from "axios";
 import Link from "next/link";
@@ -23,10 +24,14 @@ const PokemonList = ({ searchTerm }) => {
         const limit = 10;
         const offset = pokemonData ? pokemonData.length : 0;
         const remainingPokemonCount = 151 - (pokemonData ? pokemonData.length : 0);
+        if (remainingPokemonCount <= 0) {
+          setLoading(false);
+          return;
+        }
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon?limit=${remainingPokemonCount > limit ? limit : remainingPokemonCount}&offset=${offset}`
         );
-  
+
         if (pokemonData) {
           const newPokemonData = [...pokemonData, ...response.data.results];
           if (newPokemonData.length <= 151) {
@@ -53,7 +58,7 @@ const PokemonList = ({ searchTerm }) => {
     <InfiniteScroll 
       dataLength={pokemonData && pokemonData.length}
       next={fetchData}
-      hasMore={true}>
+      hasMore={pokemonData && pokemonData.length < 151}>
       {loading && <h4>Currently loading the original 151 Pokemon...</h4>}
       <Flex>
         <Grid
@@ -83,7 +88,7 @@ const PokemonList = ({ searchTerm }) => {
                 </Card>
               </Link>
             ))}
-          {searchedPokemonData && (
+          {searchedPokemonData && searchedPokemonData.id <= 151 && (
             <Link href={`/pokemon/${searchedPokemonData.name}`}>
               <Card className="w-full" size="3">
                 <Inset clip="padding-box" side="top" pb="current">
@@ -95,6 +100,9 @@ const PokemonList = ({ searchTerm }) => {
                 </Box>
               </Card>
             </Link>
+          )}
+          {searchedPokemonData && searchedPokemonData.id > 151 && (
+            <Text>Unable to retrieve Pokémon data at this time.</Text>
           )}
         </Grid>
       </Flex>
