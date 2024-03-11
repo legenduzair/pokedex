@@ -1,5 +1,5 @@
 "use client";
-import { Box, Card, Flex, Grid, Inset } from "@radix-ui/themes";
+import { Box, Card, Flex, Grid, Inset, Text } from "@radix-ui/themes";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -39,14 +39,14 @@ const PokemonList = () => {
         className="my-32 mx-5 sm:mx-16 md:mx-32 w-[80%] flex-1 h-full"
       >
         {pokemon.map((poke, index) => (
-          <Link href={`/pokemon/${index + 1}`}>
+          <Link key={index} href={`/pokemon/${index + 1}`}>
             <Card className="w-full" size="3">
               <Inset clip="padding-box" side="top" pb="current">
                 <PokemonInfo pokemonNumber={index + 1} />
               </Inset>
               <Box className="flex justify-center" width="100%" height="100%">
                 <span className="pr-2">#{index + 1}</span>
-                {poke.name}
+                <Text className="capitalize">{poke.name}</Text>
               </Box>
             </Card>
           </Link>

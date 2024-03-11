@@ -54,13 +54,13 @@ const PokemonDetail = ({ params }) => {
     <Flex justify="center">
       <Card
         size="3"
-        className="my-32 mx-5 sm:mx-16 md:mx-32 w-[90%] sm:w-[70%] md:w-[50%] h-full"
+        className="my-32 mx-5 w-[90%] md:w-[80%] lg:w-[70%] h-full"
       >
         <Link href="/">
           <small><span className="pr-2">&larr;</span> Back to the 151 Pokemon</small>
         </Link>
         <Box
-          className="flex gap-2 sm:gap-5 md:gap-10 items-start mt-10"
+          className="flex flex-col gap-2 items-center mt-10 sm:items-start sm:flex-row sm:gap-5 md:gap-10"
           width="100%"
           height="100%"
         >
@@ -74,7 +74,7 @@ const PokemonDetail = ({ params }) => {
             <p className="pb-3">{pokemonDetails.name}</p>
             <p className="pb-3">{joinTypesWithSlash(pokemonDetails.types)}</p>
             <Description pokemonDetails={pokemonDetails} />
-            <div className="flex gap-20">
+            <div className="flex gap-20 ">
               <div>
                 <h1>Stats:</h1>
                 <p>Height: {pokemonDetails.height / 10}m</p>

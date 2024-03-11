@@ -9,7 +9,9 @@ const Header = () => {
       <Image src="/assets/images/PokéDex.png"
       width={150}
       height={150}
-      className="hidden sm:block" />
+      priority={true}
+      className="hidden sm:block"
+      alt='Pokedex Logo' />
       <SearchBar />
     </Flex>
   )
