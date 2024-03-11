@@ -24,10 +24,12 @@ const PokemonList = ({ searchTerm }) => {
         const limit = 10;
         const offset = pokemonData ? pokemonData.length : 0;
         const remainingPokemonCount = 151 - (pokemonData ? pokemonData.length : 0);
+
         if (remainingPokemonCount <= 0) {
           setLoading(false);
           return;
         }
+
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon?limit=${remainingPokemonCount > limit ? limit : remainingPokemonCount}&offset=${offset}`
         );
@@ -102,7 +104,7 @@ const PokemonList = ({ searchTerm }) => {
             </Link>
           )}
           {searchedPokemonData && searchedPokemonData.id > 151 && (
-            <Text>Unable to retrieve Pokémon data at this time.</Text>
+            <Text>Unable to retrieve this Pokémon's data at this time.</Text>
           )}
         </Grid>
       </Flex>
