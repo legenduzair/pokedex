@@ -104,7 +104,7 @@ const PokemonDetail = ({ params }) => {
                 </Tabs.Content>
                 <Tabs.Content value="stats">
                   {pokemonDetails.stats.map((stat, index) => (
-                    <Text className="flex pb-1">{stat.stat.name}: {stat.base_stat}</Text>
+                    <Text key={index} className="flex pb-1">{stat.stat.name}: {stat.base_stat}</Text>
                   ))}
                 </Tabs.Content>
                 <Tabs.Content value="move-list">
