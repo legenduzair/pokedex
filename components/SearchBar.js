@@ -1,11 +1,12 @@
 "use client"
 import { Box, Button, Flex, TextField } from '@radix-ui/themes';
-import Image from 'next/image';
 import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState('');
 
+  {/* Functions to handle input/search */}
+  
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
   };

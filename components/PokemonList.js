@@ -9,6 +9,8 @@ const PokemonList = ({ searchTerm }) => {
   const [pokemonData, setPokemonData] = useState(null);
   const [searchedPokemonData, setSearchedPokemonData] = useState(null);
 
+  {/* Function to fetch pokemon data if search term is included or excluded */}
+
   useEffect(() => {
     const fetchData = async () => {
       try {

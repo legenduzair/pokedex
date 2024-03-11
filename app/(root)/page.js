@@ -8,6 +8,8 @@ import { Flex } from '@radix-ui/themes';
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
 
+  {/* Functions to handle search */}
+
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
