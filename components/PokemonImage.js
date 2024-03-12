@@ -4,35 +4,35 @@ import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-const PokemonInfo = ({ pokemonNumber }) => {
-  const [pokemonInfo, setPokemonInfo] = useState({});
+const PokemonImage = ({ pokemonName }) => {
+  const [pokemonImage, setPokemonImage] = useState({});
 
   {
     /* Fetch pokemon image depending on index */
   }
 
   useEffect(() => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`;
-    const getPokemonInfo = async () => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
+    const getPokemonImage = async () => {
       try {
         const response = await axios.get(url);
-        setPokemonInfo(response.data);
+        setPokemonImage(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-    getPokemonInfo();
-  }, [pokemonNumber]);
+    getPokemonImage();
+  }, [pokemonName]);
 
   return (
     <>
       <Flex justify="center">
-        {pokemonInfo.sprites && (
+        {pokemonImage.sprites && (
           <Image
-            src={pokemonInfo.sprites.front_default}
+            src={pokemonImage.sprites.front_default}
             width={200}
             height={200}
-            alt={`Front artwork of ${pokemonInfo.name}`}
+            alt={`Front artwork of ${pokemonImage.name}`}
           />
         )}
       </Flex>
@@ -40,4 +40,4 @@ const PokemonInfo = ({ pokemonNumber }) => {
   )
 };
 
-export default PokemonInfo;
+export default PokemonImage;

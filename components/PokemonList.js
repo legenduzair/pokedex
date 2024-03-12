@@ -4,12 +4,17 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import PokemonInfo from "./PokemonInfo";
+import PokemonImage from "./PokemonImage";
 
 const PokemonList = ({ searchTerm }) => {
   const [pokemonData, setPokemonData] = useState(null);
   const [searchedPokemonData, setSearchedPokemonData] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  {
+    /* Fetch searched pokemon details depending on search input or
+    Fetch all pokemon details but paginated 10 at a time */
+  }
 
   const fetchData = async () => {
     try {
@@ -45,7 +50,7 @@ const PokemonList = ({ searchTerm }) => {
         setSearchedPokemonData(null);
       }
     } catch (error) {
-      alert("No pokemon found. Please try again."); // Show alert when no Pokemon is found
+      alert("No pokemon found. Please try again.");
       console.error("No pokemon found. Please try again.");
     } finally {
       setLoading(false);
@@ -77,7 +82,7 @@ const PokemonList = ({ searchTerm }) => {
               <Link key={index} href={`/pokemon/${poke.name}`}>
                 <Card className="w-full" size="3">
                   <Inset clip="padding-box" side="top" pb="current">
-                    <PokemonInfo pokemonNumber={index + 1} />
+                    <PokemonImage pokemonName={index + 1} />
                   </Inset>
                   <Box
                     className="flex justify-center"
@@ -94,7 +99,7 @@ const PokemonList = ({ searchTerm }) => {
             <Link href={`/pokemon/${searchedPokemonData.name}`}>
               <Card className="w-full" size="3">
                 <Inset clip="padding-box" side="top" pb="current">
-                  <PokemonInfo pokemonNumber={searchedPokemonData.id} />
+                  <PokemonImage pokemonName={searchedPokemonData.id} />
                 </Inset>
                 <Box className="flex justify-center" width="100%" height="100%">
                   <span className="pr-2">#{searchedPokemonData.id}</span>

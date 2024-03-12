@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import PokemonList from '@/components/PokemonList';
 import SearchBar from '@/components/SearchBar';
-import { Flex } from '@radix-ui/themes';
+import { Box, Flex } from '@radix-ui/themes';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,8 +28,10 @@ export default function Home() {
         <SearchBar onSearch={handleSearch} />
       </Flex>
       <PokemonList searchTerm={searchTerm} />
-      <Flex justify="center" className="mb-16">
-        2024 Pokedex. All Rights reserved.
+      <Flex justify="center">
+        <Box className="mb-16 static bottom-0">
+          2024 Pokedex. All Rights reserved.
+        </Box>
       </Flex>
     </>
   );

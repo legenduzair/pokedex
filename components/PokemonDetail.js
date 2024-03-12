@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import "../app/globals.css";
 import Description from "./Description";
+import { joinTypesWithSlash, formatMoveList, formatAbilityList } from "../lib/utils"
 
 const PokemonDetail = ({ params }) => {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -14,7 +15,7 @@ const PokemonDetail = ({ params }) => {
   const pokemonId = params.id;
 
   {
-    /* Fetch pokemon details depending on index */
+    /* Fetch pokemon details depending on id (pokemon name) */
   }
 
   useEffect(() => {
@@ -38,30 +39,6 @@ const PokemonDetail = ({ params }) => {
   if (loading) return <div>Searching for Pokemon details in the database...</div>;
 
   if (!pokemonDetails) return <div>This pokemon does not exist in the database.</div>;
-
-  {
-    /* Util Functions */
-  }
-
-  const joinTypesWithSlash = (types) => {
-    return types.map((type) => type.type.name).join(" / ");
-  };
-
-  const removeHyphenFromMoves = (moves) => {
-    return moves.map((move) => move.move.name.replace("-", " "));
-  };
-
-  const formatMoveList = (moves) => {
-    return removeHyphenFromMoves(moves).join(", ");
-  };
-
-  const removeHyphenFromAbilities = (abilities) => {
-    return abilities.map((ability) => ability.ability.name.replace("-", " "));
-  };
-
-  const formatAbilityList = (moves) => {
-    return removeHyphenFromAbilities(moves).join(", ");
-  };
 
   return (
     <Flex justify="center">
